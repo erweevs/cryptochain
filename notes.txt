@@ -1,5 +1,5 @@
 ======== Packages Installed:
-
+------- BACKEND
 jest - testing the code
 hex-to-binary@1.0.1 - converting hex codes to binary
 express@4.16.3 - for creating the API's
@@ -18,3 +18,6 @@ uuid@3.3.2 - generate a truly unique value
     "dev" : "npm run start-redis && nodemon index.js" = > script for nodemon package to run after the start-redis command was ran
 
 **Starting up the application in dev mode: npm run dev
+
+------- FRONT END
+path

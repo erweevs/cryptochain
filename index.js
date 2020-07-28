@@ -4,6 +4,7 @@ const express = require('express');
 const request = require('request');
 // Using body-parser v 1.18.3
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const Blockchain = require('./blockchain');
 const PubSub = require('./app/pubsub');
@@ -34,6 +35,9 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 
 // Configure express to use the body-parser middleware
 app.use(bodyParser.json());
+
+// add middleware to serve the front end
+app.use(express.static(path.join(__dirname, 'client')));
 
 // Create the api end points
 const getAllBlocksAPI = '/api/blocks';
@@ -120,6 +124,11 @@ app.get(walletInfoAPI, (req, res) => {
     });
 
 
+});
+
+// GEt the index.html file
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client/index.html'));
 });
 
 // Method to sync up the chain on different ports, on startup
