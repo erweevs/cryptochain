@@ -1,0 +1,103 @@
+**This needs to be added to Confluence and the removed from here
+==== BLOCKCHAIN
+
+The literal building block of entire blockchain:
+block.js => in directory blockchain/block.js
+
+has initial structure of 
+- timestamp
+- lasthash
+- hash
+- data
+- nonce => created for proof-of-work system to account for how quickly new blocks can be created
+- difficulty => created for proof-of-work system to account for how quickly new blocks can be created
+
+genesis block is used to get the blockchain going
+
+To create a new block, we have a cryptograpihic hash methodin place
+crypto-hash.js => in directory utilities/crypto-hash.js
+
+this method will take in any number of inputs, sort them, strigify the inputs to track changes,
+if any 1 character changes, a new unique hash is going to be created,
+this allows us to link blocks together i a blockchain class:
+index.js => in directory blockchain/index.js
+
+every block's last hash field must be set to the previous block's hash.
+in addBlock() we pass the lastBlock reference to link the 2 blocks.
+
+crutial part of adding chains contributed by other users, is chain validation:
+chian validation primarly involves 2 checks:
+1. the last hash of each block must be valid
+2. generted hash field baseed off all the blck fields must be correct according to a validated hash
+
+chain replacement:
+rules to replace a chain:
+- incoming chain must be longer than current stored chain
+- incoming chain must be valid
+if an incoming cahin is longer than the current stored blockchain array, and it's valid, then we replace the current stored blockchain array with the new valid incoming array.
+
+interacting with the blockchain:
+index.js => in directory root/index.js
+
+interaction handled by pub-sub class:
+pubsub.js => in directory app/pubsub.js
+
+this follows publisher-subscriber paradigm for passing messages between servers
+this works by having channels, where subscribers listens to messages, and subscribers can publish their messages
+
+============================ Continue here
+===== CRYPTO CURRENCY
+1ste we needed a wallet to interact with users
+index.js => in directory wallet/index.js
+
+the wallets primary function is to hold the all important key-pair, 
+which contains a private and a public key.
+the public key can be used as an address to receive crypto currency 
+on the system,
+the private key on the other hand must be kept secret.
+w
+
+another key piece is the transactions:
+transaction.js => in directory wallet/transaction.js
+
+these are official record of exchenge of currency between 2 wallets
+
+- input
+    - contains official signature from the sender wallet
+
+- outputMap
+    - any values that were conducted in the transaction
+
+as multiple users start contributing these transactions, 
+we collect that data in a structure called the transaction-pool
+transaction-pool.js => in directory wallet/transaction-pool.js
+
+another key object is the reansaction miner:
+transaction-miner.js => in directory app/transaction-miner.js
+
+important job of getting valid transactiond from the pool.
+also has a reward transaction, so that they dont do all the mining 
+work for free
+
+with the transactions in the blockchain, the wallet keeps track of 
+an accurate balance:
+for this we have a method calculateBalance():
+index.js => in directory wallet/index.js
+
+the balance at ay point in time, is the output amount for that wallet 
+at its most recent transaction.
+
+with this we needed to validate the transactions using a method 
+validTransactionData():
+index.js => in directory blockchain/index.js
+
+the rules:
+1. shouldnt be duplicate miner rewards in the block
+2. should be valid overall
+    - input signature should be good
+    - outputMap should be formatted correctly, with output total that 
+    matches input amount
+    - Miner rewards should have correct miner reward amount
+3. input balances must be valid and correct according to the blockchain 
+history
+4. no duplicates of an identical transaction within a block

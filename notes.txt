@@ -1,0 +1,20 @@
+======== Packages Installed:
+
+jest - testing the code
+hex-to-binary@1.0.1 - converting hex codes to binary
+express@4.16.3 - for creating the API's
+nodemon@1.18.4 - engin to run entire application after files have been updated and saved
+body-parser@1.18.3 - Allow express to parse the JSON body in the request
+cross-env@5.2.0 - Allows you to set environment variables, regardless of OS and/ or commanline
+redis@2.8.0 - Using Redis pub/sub
+request@2.88.0 - Function that has the ability to send HTTP request
+elliptic@6.4.1 - node module that enables elliptic curve based cryptography
+uuid@3.3.2 - generate a truly unique value
+
+======== In package.json
+"scripts": {
+    . . .
+    "start": "node index.js" = > script to run on start up
+    "dev" : "npm run start-redis && nodemon index.js" = > script for nodemon package to run after the start-redis command was ran
+
+**Starting up the application in dev mode: npm run dev
