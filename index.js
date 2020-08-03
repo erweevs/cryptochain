@@ -37,7 +37,7 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 app.use(bodyParser.json());
 
 // add middleware to serve the front end
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // Create the api end points
 const getAllBlocksAPI = '/api/blocks';
@@ -128,7 +128,7 @@ app.get(walletInfoAPI, (req, res) => {
 
 // GEt the index.html file
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/index.html'));
+    res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
 // Method to sync up the chain on different ports, on startup
