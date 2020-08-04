@@ -1,7 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
+import App from './components/App';
 
 render(
-    <div>Cryptochain in react! : live update 3</div>,
+    // render the App component
+    <App/>,
     document.getElementById('root')
 );
