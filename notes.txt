@@ -30,7 +30,7 @@ react-dom@16.6.0
 Parcel-bundler to bundle all the required React files
 parcel-bundler@1.10.3
 
-babel-core@6.26.3:
+babel-core@6.26.3: **Note: upgrade to version 7 after completion
 babel-plugin-transform-class-properties@6.24.1:
 babel-plugin-transform-object-rest-spread@6.26.0:
 babel-preset-env@1.7.0:

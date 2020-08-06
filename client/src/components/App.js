@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Blocks from './Blocks';
 
 // declare the React component
 class App extends Component {
@@ -7,7 +8,8 @@ class App extends Component {
         walletInfo:{ }
     };
 
-    // this fires when the componenet has been inserted into the main document
+    // this fires when the componenet has been inserted 
+    // into the main document
     componentDidMount(){
         fetch('http://localhost:3000/api/wallet-info')
         .then(response => response.json())
@@ -22,6 +24,8 @@ class App extends Component {
                 <div>Welcome to the Blockchain</div>
                 <div>Address: {address}</div>
                 <div>Balance: {balance}</div>
+                <br/>
+                <Blocks/>
             </div>
         );
     }
