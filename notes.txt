@@ -36,6 +36,8 @@ babel-plugin-transform-object-rest-spread@6.26.0:
 babel-preset-env@1.7.0:
 babel-preset-react@6.24.1:
 
+react-bootstrap@0.32.4
+
 ========= package.json files
 DOCUMENT THIS IN CONFLUENCE
 dev-client: to push saved changes to the UI imediatly
