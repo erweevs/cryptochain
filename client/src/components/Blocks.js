@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import Block from './Block';
 
 class Blocks extends Component{
@@ -16,6 +17,7 @@ class Blocks extends Component{
         // console.log('this.state: ', this.state);
         return(
             <div>
+                <dv><Link to='/'>Home</Link></dv>
                 <h3>Blocks</h3>
                 {
                     // loop through the blocks in the array

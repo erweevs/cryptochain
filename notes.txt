@@ -37,6 +37,8 @@ babel-preset-env@1.7.0:
 babel-preset-react@6.24.1:
 
 react-bootstrap@0.32.4
+eact-router-dom@4.3.1
+history@4.7.2 : to keep track of page the user has visited
 
 ========= package.json files
 DOCUMENT THIS IN CONFLUENCE
