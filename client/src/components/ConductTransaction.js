@@ -1,6 +1,8 @@
+import { json } from 'body-parser';
 import React, {Component} from 'react';
-import { FormGroup, FormControl} from 'react-bootstrap';
+import { FormGroup, FormControl, Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import history from '../history';
 
 class ConductTransaction extends Component{
     state = {
@@ -18,8 +20,25 @@ class ConductTransaction extends Component{
         this.setState({ amount: Number(event.target.value) });
     }
 
+    conductTransaction = () => {
+        // grab the nessecary details from the UI
+        const { recipient, amount } = this.state;
+
+        // post the transaction data to the API
+        fetch(`${document.location.origin}/api/transact`,{
+            method: 'POST',
+            headers: { 'Content-Type' : 'application/json'},
+            body: JSON.stringify({ recipient, amount})
+        }).then(response => response.json())
+        .then(json => {
+            alert(json.message || json.type);
+
+            // navigate to the transaction-pool page after submission
+            history.push('/transaction-pool');
+        });
+    }
+
     render(){
-        // console.log('this.sate ', this.state);
         return(
             <div className='ConductTransaction'>
                 <Link to='/'>Home</Link>
@@ -32,12 +51,18 @@ class ConductTransaction extends Component{
                         onChange={this.updateRecipient}/>
                 </FormGroup>
                 <FormGroup>
-                <FormControl 
-                        input='number'
-                        placeholder='Amount'
-                        value={this.state.amount}
-                        onChange={this.updateAmount}/>
+                    <FormControl 
+                            input='number'
+                            placeholder='Amount'
+                            value={this.state.amount}
+                            onChange={this.updateAmount}/>
                 </FormGroup>
+                <div>
+                    <Button bsStyle="danger"
+                    onClick={this.conductTransaction}>
+                        Submit
+                    </Button>
+                </div>
             </div>
         )
     }

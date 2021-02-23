@@ -8,7 +8,7 @@ class Blocks extends Component{
     };
 
     componentDidMount(){
-        fetch('http://localhost:3000/api/blocks')
+        fetch(`${document.location.origin}/api/blocks`)
         .then(response => response.json())
         .then(json => this.setState({blocks: json}));
     };
@@ -17,7 +17,7 @@ class Blocks extends Component{
         // console.log('this.state: ', this.state);
         return(
             <div>
-                <dv><Link to='/'>Home</Link></dv>
+                <div><Link to='/'>Home</Link></div>
                 <h3>Blocks</h3>
                 {
                     // loop through the blocks in the array
