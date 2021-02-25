@@ -17,7 +17,7 @@ const isDevelopment = process.env.ENV === 'development';
 // determine the Redis URL
 const REDIS_URL = isDevelopment ? 
     'redis://127.0.0.1:6379' :
-    'blockchain-test.redis.cache.windows.net:6380,password=jfq7MSgybryb0E6c9u78mYmbfjuQm49D4DpG9z+5MQc=,ssl=True,abortConnect=False';
+    'redis://blockchain-test.redis.cache.windows.net:6380,password=jfq7MSgybryb0E6c9u78mYmbfjuQm49D4DpG9z+5MQc=,ssl=True,abortConnect=False';
 
     // Default port
 const DEFAULT_PORT = 3000;
@@ -208,7 +208,7 @@ if(isDevelopment){
         }
 
         transactionMiner.mineTransaction();
-}
+    }
 }
 // ========
 
