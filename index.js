@@ -23,7 +23,9 @@ const REDIS_URL = isDevelopment ?
 const DEFAULT_PORT = 3000;
 
 // Get the address of the root node
-const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
+const ROOT_NODE_ADDRESS = isDevelopment ?
+    `http://localhost:${DEFAULT_PORT}` : 
+    'https://blooming-plains-79380.herokuapp.com';
 
 // Create the local app
 const app = express();
