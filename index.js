@@ -23,6 +23,7 @@ const REDIS_URL = isDevelopment ?
 const DEFAULT_PORT = 3000;
 
 // Get the address of the root node
+// use production address for production peers
 const ROOT_NODE_ADDRESS = isDevelopment ?
     `http://localhost:${DEFAULT_PORT}` : 
     'https://blooming-plains-79380.herokuapp.com';
