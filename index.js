@@ -56,6 +56,9 @@ const transactAPI = '/api/transact';
 const transactionPoolMapAPI = '/api/transaction-pool-map';
 const mineTransactionsAPI = '/api/mine-transactions';
 const walletInfoAPI = '/api/wallet-info';
+const knownAddressedAPI = '/api/known-addresses';
+const blocksLengthAPI = '/api/blocks/length';
+const blocksIndexAPI = '/api/blocks/:id';
 
 // Define a GET request to get all the blocks in the Blockchain
 // req = request, res = response
@@ -134,6 +137,44 @@ app.get(walletInfoAPI, (req, res) => {
     });
 
 
+});
+
+// GET all the known addresses
+app.get(knownAddressedAPI, (req, res) => {
+    const addressMap = {};
+
+    for(let block of blockchain.chain){
+        for(let transaction of block.data){
+            const recipients = Object.keys(transaction.outputMap);
+
+            recipients.forEach(recipeint => addressMap[recipeint] = recipeint);
+        }
+    }
+
+    res.json(Object.keys(addressMap));
+});
+
+// GET the length of the blockchain
+app.get(blocksLengthAPI , (req, res) => {
+    res.json(blockchain.chain.length);
+});
+
+// GET paginated data from the blockchain
+app.get(blocksIndexAPI, (req, res) => {
+    const {id} = req.params;
+
+    const {length} = blockchain.chain;
+
+    // need to use slice(), this will make a copy and not override the blockchain
+    const blocksReversed = blockchain.chain.slice().reverse();
+
+    let startIndex = (id - 1) * 5;
+    let endIndex = id * 5;
+
+    startIndex = startIndex < length ? startIndex : length;
+    endIndex = endIndex < length ? endIndex : length;
+
+    res.json(blocksReversed.slice(startIndex, endIndex));
 });
 
 // GEt the index.html file
