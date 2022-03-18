@@ -17,7 +17,7 @@ const isDevelopment = process.env.ENV === 'development';
 // determine the Redis URL
 const REDIS_URL = isDevelopment ? 
     'redis://127.0.0.1:6379' :
-    'redis://blockchain-test.redis.cache.windows.net:6380,password=jfq7MSgybryb0E6c9u78mYmbfjuQm49D4DpG9z+5MQc=,ssl=True,abortConnect=False';
+    '<add_production_connection_string>';
 
     // Default port
 const DEFAULT_PORT = 3000;
@@ -26,7 +26,7 @@ const DEFAULT_PORT = 3000;
 // use production address for production peers
 const ROOT_NODE_ADDRESS = isDevelopment ?
     `http://localhost:${DEFAULT_PORT}` : 
-    'https://blooming-plains-79380.herokuapp.com';
+    '<add_production_connection_string>';
 
 // Create the local app
 const app = express();
